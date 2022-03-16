@@ -1,0 +1,37 @@
+Angle_Check(0, 0);
+			if (Robot_Info[0][0] + 70 > P_Ball_x)
+			{
+				if (P_Ball_y < 280 && Robot_Info[0][1]<280)
+				{
+
+					if (P_Ball_y + 70> Robot_Info[0][1])
+					{
+						LR_CHECK(0, P_Ball_x - 100, P_Ball_y + 70);
+						SendData(0, N_M_BackRun40);
+					}
+
+					else if (P_Ball_y - 70 < Robot_Info[0][1])
+					{
+						LR_CHECK(0, P_Ball_x + 100, P_Ball_y - 70);
+						SendData(0, N_M_BackRun40);
+					}
+				}
+				else if (P_Ball_y > 280 && Robot_Info[0][1] > 280)
+				{
+					
+					
+
+						if (P_Ball_y + 70> Robot_Info[0][1])
+						{
+							LR_CHECK(0, P_Ball_x - 100, P_Ball_y - 70);
+							SendData(0, N_M_BackRun40);
+						}
+
+						else if (P_Ball_y + 70 < Robot_Info[0][1])
+						{
+							LR_CHECK(0, P_Ball_x + 100, P_Ball_y - 70);
+							SendData(0, N_M_BackRun40);
+						}
+					}
+				
+			}

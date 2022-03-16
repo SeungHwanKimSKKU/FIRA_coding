@@ -1,0 +1,65 @@
+if (P_Ball_y < 250)//위
+			{
+				if (P_Ball_x > Robot_Info[1][0] + 60)
+				{
+					LR_CHECK(1, P_Ball_x, P_Ball_y - 50);
+					Angle_Check(1, 0);
+					SendData(1, 8);
+				}
+				if (P_Ball_x <= Robot_Info[1][0] + 60 && P_Ball_x > Robot_Info[1][0] + 30)
+				{
+					if (Robot_Info[1][2] >= 190 && Robot_Info[1][2] <= 210)
+					{
+						SendData(1, 9);
+					}
+					else
+					{
+						Ball_Angle_Check(1, P_Ball_x, P_Ball_y);
+					}
+				}
+				if (P_Ball_x <= Robot_Info[1][0] + 30) //공을 차는 부분
+				{
+					SendData(1, 16);
+				}
+			}
+			else if (P_Ball_y >= 250 && P_Ball_y < 320)//중간
+			{
+				if (P_Ball_x > Robot_Info[1][0])
+				{
+					LR_CHECK(1, P_Ball_x, P_Ball_y - 30);
+					Angle_Check(1, 0);
+					SendData(1, 8);
+				}
+				if (P_Ball_x <= Robot_Info[1][0] + 60 && P_Ball_x > Robot_Info[1][0] + 30)
+				{
+					SendData(1, 9);
+				}
+				if (P_Ball_x <= Robot_Info[1][0] + 40) //공을 차는 부분
+				{
+					Kick(1);
+				}
+			}
+			else//아래
+			{
+				if (P_Ball_x > Robot_Info[1][0] + 60)
+				{
+					LR_CHECK(1, P_Ball_x, P_Ball_y + 30);
+					Angle_Check(1, 0);
+					SendData(1, 8);
+				}
+				if (P_Ball_x <= Robot_Info[1][0] + 60 && P_Ball_x > Robot_Info[1][0] + 30)
+				{
+					if (Robot_Info[1][2] >= 150 && Robot_Info[1][2] <= 170)
+					{
+						SendData(1, 9);
+					}
+					else
+					{
+						Ball_Angle_Check(1, P_Ball_x, P_Ball_y);
+					}
+				}
+				if (P_Ball_x <= Robot_Info[1][0] + 30) //공을 차는 부분
+				{
+					SendData(1, 16);
+				}
+			}

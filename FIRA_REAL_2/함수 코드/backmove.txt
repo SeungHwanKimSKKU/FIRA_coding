@@ -1,0 +1,59 @@
+if (Robot_Info[0][0] >= 500 && Robot_Info[0][0] < 950)
+			{
+				Angle_Check(0, 0);
+				LR_CHECK(0, P_Ball_x, P_Ball_y);
+				if (P_Robot1_a > 170 && P_Robot1_a < 190)
+				{
+					SendData(0, 6);
+				}
+				if (Robot_Info[0][1] - P_Ball_y > -10 && Robot_Info[0][1] - P_Ball_y < 10)
+				{
+					if (Robot_Info[0][0] - P_Ball_x > 0 && Robot_Info[0][0] - P_Ball_x < 20)
+					{
+						SendData(0, 32);
+					}
+				}
+
+
+
+
+
+
+
+
+
+				Angle_Check(0, 0);
+
+			if (Robot_Info[0][0] + 50 > P_Ball_x) //로봇이 공보다 앞에 잇으면
+			{
+				if (Robot_Info[0][1] < 206) //위에 잇으면
+				{
+					if (Robot_Info[0][1] - 45 < P_Ball_y) //오른쪽
+					{
+						SendData(0, 15);///오른쪽
+					}
+					else if (Robot_Info[0][1] - 55 > P_Ball_y) //왼쪽
+					{
+						SendData(0, 17);///왼쪽
+					}
+					else
+					{
+						SendData(0, 19);//뒤로
+					}
+				}
+				else //밑에잇으면
+				{
+					if (Robot_Info[0][1] + 45 > P_Ball_y) //왼쪽
+					{
+						SendData(0, 17);
+					}
+					else if (Robot_Info[0][1] + 55 < P_Ball_y) //오른쪽
+					{
+						SendData(0, 15);
+					}
+					else
+					{
+						SendData(0, 19);
+					}
+				}
+			}

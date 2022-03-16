@@ -1,0 +1,20 @@
+LR_CHECK(0, P_Ball_x, P_Ball_y);
+			if (Robot_Info[0][0] + 120 <= P_Ball_x)
+			{
+				SendData(0, Center_Run);
+			}
+			else if (Robot_Info[0][0] + 120 > P_Ball_x&&Robot_Info[0][0] + 55 <= P_Ball_x)
+			{
+				SendData(0, F_Center_Run);
+			}
+			else if (Robot_Info[0][0] + 55 > P_Ball_x&&Robot_Info[0][0] + 50 <= P_Ball_x)
+			{
+				if (Robot_Info[0][1] + 10 >= P_Ball_y)
+						{
+							SendData(0, Left_Kick);
+						}
+						else if (Robot_Info[0][1] - 40 >= P_Ball_y)
+						{
+							SendData(0, Right_Kick);
+						}
+			}

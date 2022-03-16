@@ -1,0 +1,97 @@
+if (P_Ball_y < 250)//위
+			{
+				if (P_Ball_x > Robot_Info[1][0] + 60)
+				{
+					LR_CHECK(1, P_Ball_x, P_Ball_y-20 );
+					Angle_Check(1, 0);
+					SendData(1, 8);
+					printf("aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					printf("aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					printf("aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					
+				}
+				else if (P_Ball_x >= Robot_Info[1][0] + 60 && P_Ball_x < Robot_Info[1][0] + 50)
+				{
+						SendData(1, 9);
+						printf("111111111aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+						printf("111111111aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+						printf("111111111aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					
+					/*if (Robot_Info[1][2] <= 185 && Robot_Info[1][2] >= 220)
+					{
+						Ball_Angle_Check(1, P_Ball_x, P_Ball_y);
+						printf("22222222aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+						printf("22222222aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+						printf("22222222aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					}*/
+				}
+				else if (P_Ball_x >= Robot_Info[1][0] + 50&&P_Ball_x <= Robot_Info[1][0] + 40) //공을 차는 부분
+				{
+					SendData(1, 16);
+					printf("33333333aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					printf("33333333aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					printf("33333333aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+				}
+			}
+			else if (P_Ball_y >= 250 && P_Ball_y < 320)//중간
+			{
+				if (P_Ball_x - 60 > Robot_Info[1][0])
+				{
+					LR_CHECK(1, P_Ball_x, P_Ball_y );
+					Angle_Check(1, 0);
+					SendData(1, 8);
+					printf("444444444aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					printf("444444444aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					printf("444444444aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+				}
+				else if (P_Ball_x >= Robot_Info[1][0] + 60 && P_Ball_x < Robot_Info[1][0] + 40)
+				{
+					SendData(1, 9);
+					printf("555555555aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					printf("555555555aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					printf("555555555aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+				}
+				else if (P_Ball_x >= Robot_Info[1][0] + 40&&P_Ball_x < Robot_Info[1][0] + 30) //공을 차는 부분
+				{
+					Kick(1);
+					printf("66666666aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					printf("66666666aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					printf("66666666aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+				}
+			}
+			else//아래
+			{
+				if (P_Ball_x > Robot_Info[1][0] + 60)
+				{
+					LR_CHECK(1, P_Ball_x, P_Ball_y+10 );
+					SendData(1, 8);
+					Angle_Check(1, 0);
+					printf("7777777aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					printf("7777777aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					printf("7777777aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+				}
+				else if (P_Ball_x >= Robot_Info[1][0] + 60 && P_Ball_x < Robot_Info[1][0] + 50)
+				{
+					
+					
+						SendData(1, 9);
+						printf("888888888aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+						printf("888888888aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+						printf("888888888aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					
+					/*if (Robot_Info[1][2] <= 150 && Robot_Info[1][2] >= 170)
+					{
+						Ball_Angle_Check(1, P_Ball_x, P_Ball_y);
+						printf("999999999aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+						printf("999999999aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+						printf("999999999aaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					}*/
+				}
+				else if (P_Ball_x >= Robot_Info[1][0] + 50&&P_Ball_x < Robot_Info[1][0] + 40) //공을 차는 부분
+				{
+					SendData(1, 16);
+					printf("bbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					printf("bbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+					printf("bbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+				}
+			}

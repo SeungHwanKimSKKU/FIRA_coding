@@ -1,0 +1,21 @@
+int *R_Data[3][3] = { { &Robot_Info[0][0], &Robot_Info[0][1], &Robot_Info[0][2] }, { &Robot_Info[1][0], &Robot_Info[1][1], &Robot_Info[1][2] }, { &Robot_Info[2][0], &Robot_Info[2][1], &Robot_Info[2][2] } };
+		if (Target_y - 50 > Robot_Info[num][1])
+		{
+			SendData(num, N_M_Right20);
+		}
+		else if (Target_y - 20 > Robot_Info[num][1])
+		{
+			SendData(num, N_M_Right20);
+		}
+		else if (Target_y + 50 < Robot_Info[num][1])
+		{
+			SendData(num, N_M_Left20);
+		}
+		else if (Target_y + 20 < Robot_Info[num][1])
+		{
+			SendData(num, N_M_Left20);
+		}
+		else
+		{
+			SendData(num, 0);
+		}

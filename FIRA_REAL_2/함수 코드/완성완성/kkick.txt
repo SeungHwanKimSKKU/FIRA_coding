@@ -1,0 +1,12 @@
+if (Robot_Info[num][0] + 10 < P_Ball_x && Robot_Info[num][1] > P_Ball_y) //로봇이 공의 뒤에 잇고 공보다 위쪽에 잇으면
+		{
+			//왼발로 참
+		}
+		if (Robot_Info[num][0] + 10 < P_Ball_x && Robot_Info[num][1] <= P_Ball_y) //로봇이 공의 뒤에 잇고 공보다 아래쪽에 잇으면
+		{
+			//오른발로 참
+		}
+		if (Robot_Info[num][0] + 10 < P_Ball_x) //로봇이 공의 앞에 잇고 일정 범위 안에 잇으면
+		{
+			Ball_Angle_Check(0, P_Ball_x, P_Ball_y); //공을 바라보고 왼발로 참
+		}

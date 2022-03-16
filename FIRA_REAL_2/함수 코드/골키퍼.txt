@@ -1,0 +1,35 @@
+if (P_Ball_x < 280 && P_Ball_x > 60)
+			{
+				LR_CHECK(0, P_Ball_x, P_Ball_y);
+				if (Robot_Info[0][0] < 280 && Robot_Info[0][0] > 60)
+				{
+					Angle_Check(0, 0);
+					
+					if (P_Robot1_a > 170 && P_Robot1_a < 190)
+					{
+							SendData(0, 6);
+					}
+					
+				}
+				else
+				{
+					SendData(0, 19);
+					
+					
+				}
+			}
+			else
+			{
+				
+				if (Robot_Info[0][0] > 100)
+				{
+					SendData(0, 19);
+					
+				}
+				else
+				{
+					LR_CHECK(0, P_Ball_x, P_Ball_y);
+					////여기에다가 Keeper 모션
+				}
+				
+				}

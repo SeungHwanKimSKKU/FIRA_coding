@@ -1,0 +1,30 @@
+if (P_Ball_x < 500 && P_Ball_x > 300)
+			{
+				LR_CHECK(0, P_Ball_x, P_Ball_y);
+				if (Robot_Info[0][0] < 500 && Robot_Info[0][0] > 200)
+				{
+					Angle_Check(0, 0);
+					
+					if (P_Robot1_a > 170 && P_Robot1_a < 190)
+					{
+							SendData(0, 6);
+					}
+					
+				}
+				else
+				{
+					SendData(0, 19);
+					
+					
+				}
+			}
+			else
+			{
+				
+				if (Robot_Info[0][0] > 350)
+				{
+					SendData(0, 19);
+					
+				}
+				LR_CHECK(0, P_Ball_x, P_Ball_y);
+				}

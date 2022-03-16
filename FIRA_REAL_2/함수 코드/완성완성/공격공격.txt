@@ -1,0 +1,5 @@
+if (Robot_Info[0][0] >= 500 && Robot_Info[0][0] < 950)
+			{
+				RobotMove(0, P_Ball_x, P_Ball_y); //공 바로 뒤를 찾아감
+				Kick(0); //알맞은 발로 공을 참
+			}

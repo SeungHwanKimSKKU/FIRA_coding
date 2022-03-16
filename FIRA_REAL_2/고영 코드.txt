@@ -1,0 +1,84 @@
+//////mini robot 제어문을 고영로봇 제어문과 1:1 대칭 시킨다.
+	const unsigned long Motion_table[32] = {
+		//0~31
+		0x000, 0x800001, 0x800001, 0x800001, 0x000, 0x000002, 0x000, 0x000008, //0~7
+		0x000008, 0x000008, 0x000008, 0x000020, 0x000020, 0x000020, 0x000020, 0x100000, //8~15
+		0x100000, 0x040000, 0x040000, 0x000080, 0x000, 0x000, 0x010000, 0x400000, //16~23
+		0x010000, 0x400000, 0x000, 0x000, 0x000, 0x000, 0x000002, 0x000 //24~31
+	};
+
+	bool CImageProcessDlg::SendData(int index, int commend)
+	{
+
+		Send_MotionRemoteControl_Write_NoResponse(index + 1, 0, Motion_table[commend], 100);
+		return true;
+
+
+			//printf("index : %d    commend : %d \n", index+1, commend);
+		if (Flag_Connect_Serial == 1)
+		{
+			m_Comm.WriteCommend(index, commend);
+			return true;
+		}
+		else
+		{
+			printf("Serial Disconnect\n");
+			return false;
+		}
+	}
+
+	///////패킷을 보내는데 패킷이 제대로 된 패킷인지 확인 한다.
+	int CalCheckSum(unsigned char *pBuf, int iLimit)
+	{
+		int iSum = 0;
+
+		for (int i = 1; i < iLimit; i++)    // 버퍼의 0번지 데이터는 빼고 계산한다. ( 0번지는 SOH이므로 빼고 계산 )
+		{
+			iSum = (iSum ^ pBuf[i]) + 1;
+			iSum = iSum % 256;
+		}
+
+		return iSum;
+	}
+
+	////고영 로봇틱스 제어문으로 변환한다(code에 senddata에 정의되어 있는 통신 모듈처럼 같은 역할을 한다.)
+	// 리모트 컨트롤...
+	int CImageProcessDlg::Send_MotionRemoteControl_Write_NoResponse(int Robot_Id, int addr, int motion_code, int speed_override)
+	{
+		if (!Flag_Connect_Serial) return 1;
+
+
+		unsigned char buf[7 + 4 + 2 + 1];
+		int ChkDataLen = 0;
+
+		buf[ChkDataLen++] = 0xAA;                                // SOH      (Start of head)
+		buf[ChkDataLen++] = Robot_Id;// 국번          [0]
+		buf[ChkDataLen++] = 0xD1;                                // main Function                [1]
+		buf[ChkDataLen++] = (byte)((addr >> 8) & 0xff);  // sub function 1                [2]
+		buf[ChkDataLen++] = (byte)((addr >> 0) & 0xff);   // sub function 2               [3]
+		buf[ChkDataLen++] = 0;                                     // data Length (high)           [4]
+		buf[ChkDataLen++] = 4 + 2;                                     // data Length (low)            [5]
+
+		buf[ChkDataLen++] = (byte)((motion_code >> 24) & 0xff);  // data( high)                      [6]
+		buf[ChkDataLen++] = (byte)((motion_code >> 16) & 0xff);  // data (low)                       [7]
+		buf[ChkDataLen++] = (byte)((motion_code >> 8) & 0xff);  // data( high)                      [8]
+		buf[ChkDataLen++] = (byte)((motion_code >> 0) & 0xff);  // data (low)                       [9]
+
+		buf[ChkDataLen++] = (byte)((speed_override >> 8) & 0xff);  // speed_override( high)                      [10]
+		buf[ChkDataLen++] = (byte)((speed_override >> 0) & 0xff);  // speed_override (low)                       [11]
+
+		// 체크섬 계산
+		buf[ChkDataLen] = (byte)CalCheckSum(buf, ChkDataLen);
+
+		// 마지막으로 전송...................................................................................... //
+		// sp.ReadExisting();  // 수신 전에 시리얼버퍼에 들어있는 데이터는 모두 버린다.
+
+		//sp.Write(buf, 0, ChkDataLen + 1);
+		m_Comm.WriteCommBlock((LPSTR)buf, ChkDataLen + 1);
+
+
+		//byte[] response = new byte[1];
+		//GetResponse(ref response, 1);
+		return 1;// response[0];
+	}
+고영 코드 수정

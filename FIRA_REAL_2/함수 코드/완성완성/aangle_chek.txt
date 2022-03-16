@@ -1,0 +1,23 @@
+int angle = 0;
+		angle = atan(P_Ball_y / P_Ball_x);
+		
+		if (angle - Robot_Info[num][2] > 40 && angle - Robot_Info[num][2] < 180)
+		{
+			SendData(num, 12); //¿Þ
+		}
+		else if (angle - Robot_Info[num][2] > 180 && angle - Robot_Info[num][2] < 320)
+		{
+			SendData(num, 8); //¿À
+		}
+
+int angle = 0;
+		angle = atan(P_Ball_y / P_Ball_x);
+		
+		if (angle - Robot_Info[num][2] > 40 && angle - Robot_Info[num][2] < 180)
+		{
+			SendData(num, 12); //¿Þ
+		}
+		else if (angle - Robot_Info[num][2] > 180 && angle - Robot_Info[num][2] < 320)
+		{
+			SendData(num, 8); //¿À
+		}

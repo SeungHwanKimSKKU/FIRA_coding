@@ -1,0 +1,57 @@
+////////////////////1번////////////////////
+Angle_Check(0, 0);
+			if (Robot_Info[0][0] <= 430)
+			{
+				SendData(0, 9);
+			}
+			if (Robot_Info[0][0] > 430)
+			{
+				LR_CHECK(0, 490, 430);
+			}
+
+////////////////////2번////////////////////
+if (Robot_Info[1][0] < 730 && P_Ball_x > 460)
+			{
+				if (P_Ball_x > Robot_Info[1][0] && Area_Count1 == 0)
+				{
+					LR_CHECK(1, P_Ball_x, P_Ball_y);
+					Angle_Check(1, 0);
+					if (P_Ball_x >= Robot_Info[1][0] + 60)
+					{
+						SendData(1, 8);
+					}
+					else if (P_Ball_x < Robot_Info[1][0] + 60 && P_Ball_x >= Robot_Info[1][0] + 40)
+					{
+						SendData(1, 9);
+					}
+					else if (P_Ball_x < Robot_Info[1][0] + 40) //공을 차는 부분
+					{
+						if (Robot_Info[1][1] > P_Ball_y)
+						{
+							if (Robot_Info[1][1] > P_Ball_y + 15)
+							{
+								SendData(1, 12);
+							}
+							else
+							{
+								SendData(1, 17);
+							}
+						}
+						else
+						{
+							if (Robot_Info[1][1] < P_Ball_y - 15)
+							{
+								SendData(1, 10);
+							}
+							else
+							{
+								SendData(1, 16);
+							}
+						}
+					}
+				}
+				else
+				{
+					BackMove(1, P_Ball_x, P_Ball_y);
+				}
+			}

@@ -1,0 +1,9 @@
+int *R_Data[3][3] = { { &Robot_Info[0][0], &Robot_Info[0][1], &Robot_Info[0][2] }, { &Robot_Info[1][0], &Robot_Info[1][1], &Robot_Info[1][2] }, { &Robot_Info[2][0], &Robot_Info[2][1], &Robot_Info[2][2] } };
+		if (Robot_Info[num][2] > 0 && Robot_Info[num][2] < 170)
+		{
+			SendData(0, 12);
+		}
+		if (Robot_Info[num][2] > 190 && Robot_Info[num][2] < 350)
+		{
+			SendData(0, 8);
+		}
